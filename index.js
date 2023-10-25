@@ -12,7 +12,7 @@ app.use(morgan('combined'));
 
 // Ruta basica del servidor
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Bienvenido a la API de Webhooks");
 });
 
 // Rutas del servidor
