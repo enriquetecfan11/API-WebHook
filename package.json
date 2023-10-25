@@ -26,6 +26,7 @@
     "nodemon": "^2.0.22",
     "pg": "^8.11.3",
     "sequelize": "^6.33.0",
-    "systeminformation": "^5.21.13"
+    "systeminformation": "^5.21.13",
+    "uuid": "^9.0.1"
   }
 }
