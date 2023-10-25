@@ -12,15 +12,15 @@
     "start": {
       "name": "start",
       "command": "yarn start",
-      "runAtStart": true,
+      "runAtStart": false,
       "preview": {
         "port": 3000
       }
     },
-    "dev":{
-      "name" : "dev",
+    "dev": {
+      "name": "dev",
       "command": "yarn dev",
-      "runAtStart":  true,
+      "runAtStart": true,
       "preview": {
         "port": 3000
       }
