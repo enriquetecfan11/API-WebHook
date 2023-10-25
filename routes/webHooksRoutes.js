@@ -3,12 +3,17 @@ const fs = require("fs");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
-// Crea un archivo JSON vacío si no existe
-const dataFilePath = "./data/webhook-data.json";
 
-if (!fs.existsSync(dataFilePath)) {
+// Si la carpeta data no existe creala y crea dentro un archivo JSON con el nomnbre webhook-data
+const dataDir = "./data";
+const dataFilePath = `${dataDir}/webhook-data.json`;
+
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir);
   fs.writeFileSync(dataFilePath, "[]");
 }
+
+
 
 // Ruta para recibir datos del webhook
 router.post("/", (req, res) => {
