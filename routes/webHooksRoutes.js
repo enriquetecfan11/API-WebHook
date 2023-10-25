@@ -4,7 +4,6 @@ const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 
 
-// Si la carpeta data no existe creala y crea dentro un archivo JSON con el nomnbre webhook-data
 const dataDir = "./data";
 const dataFilePath = `${dataDir}/webhook-data.json`;
 
