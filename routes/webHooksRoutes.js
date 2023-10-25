@@ -7,13 +7,6 @@ const { v4: uuidv4 } = require("uuid");
 const dataDir = "./data";
 const dataFilePath = `${dataDir}/webhook-data.json`;
 
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir);
-  fs.writeFileSync(dataFilePath, "[]");
-}
-
-
-
 // Ruta para recibir datos del webhook
 router.post("/", (req, res) => {
   const data = req.body;

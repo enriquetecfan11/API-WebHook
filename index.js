@@ -4,6 +4,7 @@ const app = express();
 const os = require('os');
 const si = require('systeminformation');
 const morgan = require('morgan');
+const fs = require("fs");
 
 // Server Options
 app.use(express.json());
@@ -22,6 +23,19 @@ const webHoouksRouter = require("./routes/webHooksRoutes");
 // Rutas del servidor
 app.use("/users", usersRouter);
 app.use("/webhook", webHoouksRouter);
+
+// Funcion para cear carpeta 'data'
+async function createFolder() {
+  const dataDir = "./data";
+  const dataFilePath = `${dataDir}/webhook-data.json`;
+
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir);
+    fs.writeFileSync(dataFilePath, "[]");
+  }
+
+  console.log(`🟢  Folder created: ${dataDir}`)
+}
 
 // Body parser
 app.use(bodyparser.json());
@@ -74,6 +88,7 @@ async function startServer() {
 
 async function main() {
   await cpuData();
+  await createFolder();
   await startServer();
 }
 
