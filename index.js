@@ -2,7 +2,8 @@ const express = require("express");
 const usersRouter = require("./routes/users");
 const bodyparser = require("body-parser");
 const app = express();
-const port = 3000;
+const si = require('systeminformation');
+
 
 // Ruta basica del servidor
 app.get("/", (req, res) => {
@@ -23,7 +24,26 @@ app.post("/webhook", (req, res) => {
 
   res.json({ mensaje: "Datos del webhook recibidos con éxito" });
 });
+
+// Funcion para obtener datos del sistema
+async function cpuData() {
+  try {
+    const data = await si.cpu();
+    // si.networkGatewayDefault().then(data => console.log(data));
+    const networkData = await si.networkInterfaces();
+    console.log('💻 CPU Information:' + data.brand + ' Cores ' + data.cores + ' Pysical Cores ' + data.physicalCores  + "\n");
+    console.log('🛜 ' + networkData[1].iface + ' IP: ' + networkData[1].ip4  + "\n");
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+
+// Puerto del servidor
+const port = 3000;
+
 // Inicia el servidor en el puerto especificado
 app.listen(port, () => {
-  console.log(`API de webhook escuchando en el puerto ${port}`);
+  cpuData();
+  console.log(`🚀 API de webhook escuchando en el puerto ${port}` + "\n");
 });
