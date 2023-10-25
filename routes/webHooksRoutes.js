@@ -27,7 +27,9 @@ router.post("/", (req, res) => {
   fs.readFile(dataFilePath, (err, existingData) => {
     if (err) {
       console.error("Error al leer el archivo JSON:", err);
-      return res.status(500).json({ error: "No se pudieron guardar los datos" });
+      return res
+        .status(500)
+        .json({ error: "No se pudieron guardar los datos" });
     }
 
     // Parsear el contenido existente del archivo JSON (si existe)
@@ -40,10 +42,14 @@ router.post("/", (req, res) => {
     fs.writeFile(dataFilePath, JSON.stringify(parsedData, null, 2), (err) => {
       if (err) {
         console.error("Error al escribir en el archivo JSON:", err);
-        return res.status(500).json({ error: "No se pudieron guardar los datos" });
+        return res
+          .status(500)
+          .json({ error: "No se pudieron guardar los datos" });
       }
 
-      res.json({ mensaje: "Datos del webhook recibidos y guardados con éxito" });
+      res.json({
+        mensaje: "Datos del webhook recibidos y guardados con éxito",
+      });
     });
   });
 });
@@ -53,7 +59,9 @@ router.get("/", (req, res) => {
   fs.readFile(dataFilePath, (err, data) => {
     if (err) {
       console.error("Error al leer el archivo JSON:", err);
-      return res.status(500).json({ error: "No se pudieron obtener los datos" });
+      return res
+        .status(500)
+        .json({ error: "No se pudieron obtener los datos" });
     }
 
     const parsedData = JSON.parse(data);

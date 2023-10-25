@@ -1,2 +1,3 @@
 node_modules
-./data/webhook-data.json
+
+data/webhook-data.json
